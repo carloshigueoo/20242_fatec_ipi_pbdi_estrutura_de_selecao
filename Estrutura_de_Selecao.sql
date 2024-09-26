@@ -158,3 +158,38 @@ $$;
 -- da compra for menor que R$20. Caso contrário, ele deseja lucro de 30%. Faça um
 -- programa que, dado o valor do produto, calcula o valor de venda.
 
+--SOLUÇÃO IF
+DO
+$$
+DECLARE
+    compra numeric(10, 2) := valor_aleatorio_entre(0, 100);
+    venda numeric(10, 2);
+BEGIN
+    IF compra <= 20 THEN
+        venda := compra * 1.45;
+    ELSE
+        venda := compra * 1.3;
+    END IF;
+    RAISE NOTICE 'compra: R$ %', compra;
+    RAISE NOTICE 'venda: R$ %', venda;
+    END
+$$;
+
+-- SOLUÇÃO CASE
+DO
+$$
+DECLARE
+    compra numeric(10, 2) := valor_aleatorio_entre(0, 100);
+    venda numeric(10, 2);
+BEGIN
+    CASE
+        WHEN compra <= 20 THEN
+            venda := compra * 1.45;
+    ELSE
+        venda := compra * 1.3;
+    END CASE;
+    RAISE NOTICE 'compra: R$ %', compra;
+    RAISE NOTICE 'venda: R$ %', venda;
+    END
+$$;
+
