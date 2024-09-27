@@ -52,12 +52,14 @@ $$
 DECLARE
     numero int := valor_aleatorio_entre(1,100);
 BEGIN 
-    IF numero % 3 = 0 THEN 
-        RAISE NOTICE 'O número % é mútiplo de 3', numero;
+    IF numero % 3 = 0 AND numero % 5 = 0 THEN 
+        RAISE NOTICE 'O número % é múltiplo de 3 e 5', numero;
+    ELSEIF numero % 3 = 0 THEN 
+        RAISE NOTICE 'O número % é múltiplo de 3', numero;    
     ELSEIF numero % 5 = 0 THEN 
-        RAISE NOTICE 'O número % é mútiplo de 5', numero;
+        RAISE NOTICE 'O número % é múltiplo de 5', numero;
     ELSE 
-        RAISE NOTICE 'O número % não é multiplo de 3 e nem de 5', numero;
+        RAISE NOTICE 'O número % não é múltiplo de 3 e nem de 5', numero;
     END IF;
 END
 $$; 
@@ -67,18 +69,19 @@ DO
 $$ 
 DECLARE
     numero int := valor_aleatorio_entre(1,100);
-BEGIN 
-    CASE
+BEGIN
+    CASE 
+        WHEN numero % 3 = 0 AND numero % 5 = 0 THEN 
+            RAISE NOTICE 'O número % é múltiplo de 3 e 5', numero;
         WHEN numero % 3 = 0 THEN 
-            RAISE NOTICE 'O número % é mútiplo de 3', numero;
+            RAISE NOTICE 'O número % é múltiplo de 3', numero;    
         WHEN numero % 5 = 0 THEN 
-            RAISE NOTICE 'O número % é mútiplo de 5', numero;
+            RAISE NOTICE 'O número % é múltiplo de 5', numero;
         ELSE 
-            RAISE NOTICE 'O número % não é multiplo de 3 e nem de 5', numero;
+            RAISE NOTICE 'O número % não é múltiplo de 3 e nem de 5', numero;
     END CASE;
 END
-$$; 
-
+$$;
 -- 1.3 Faça um programa que opera de acordo com o seguinte menu.
 -- Opções:
 -- 1 - Soma
@@ -96,7 +99,7 @@ $$
 DECLARE
     op1 int := valor_aleatorio_entre (1,100);
     op2 int := valor_aleatorio_entre (1,100);
-    opcao int := valor_aleatorio_entre (1,5);
+    opcao int := valor_aleatorio_entre (1,5); -- Colocado do 1 ao 5 para testar o ELSE
     resultado numeric;
 BEGIN
     IF opcao = 1 THEN -- SOMA 
@@ -127,7 +130,7 @@ $$
 DECLARE
     op1 int := valor_aleatorio_entre (1,100);
     op2 int := valor_aleatorio_entre (1,100);
-    opcao int := valor_aleatorio_entre (1,5);
+    opcao int := valor_aleatorio_entre (1,5); -- Colocado do 1 ao 5 para testar o ELSE
     resultado numeric;
 BEGIN
     CASE
